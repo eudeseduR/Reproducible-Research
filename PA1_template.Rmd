@@ -5,16 +5,13 @@ output:
     keep_md: true
 ---
 
+## Loading and preprocessing the data
+
 ```{r, echo=FALSE, results='hide', warning=FALSE, message=FALSE}
 library(ggplot2)
 library(scales)
 library(Hmisc)
-```
 
-
-## Loading and preprocessing the data
-
-```{r}
 ## Reading the activity file from a working directory.
 
 setwd("~/Documents/Coursera/Data Science/05 - Reproducible Research/Project 1")
@@ -40,7 +37,6 @@ print(paste("The mean is", round(mean(StepsByDay$steps)),
 ## What is the average daily activity pattern?
 
 ```{r, fig.align = 'center'}
-
 ## Calculating the average number of steps taken.
 
 StepsInterval <- aggregate(steps ~ interval, activity, mean, na.rm = TRUE)
@@ -58,7 +54,6 @@ plot(StepsInterval$interval, StepsInterval$steps,
 ## Calculating and reporting dataset missing values. 
 
 print(length(which(is.na(activity$steps))))
-
 ```
 
 ```{r, fig.align = 'center'}
@@ -87,5 +82,4 @@ averagedActivity <- aggregate(steps ~ interval + date, data = activity, mean)
 
 ggplot(averagedActivity, aes(interval, steps)) + geom_line() + facet_grid(date ~ .) + 
        xlab("5-minute Interval") + ylab("Number of Steps (Average)")
-
 ```
